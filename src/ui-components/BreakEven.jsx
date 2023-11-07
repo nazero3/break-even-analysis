@@ -34,7 +34,27 @@ class BreakEvenCalculator extends Component {
 // vc: 10 sp: 20 fc: 100
   render() {
     const { fixedCosts, variableCostPerUnit, sellingPricePerUnit, breakEvenUnits, breakEvenDollars } = this.state;
-
+    fetch("http://localhost:4000/calculateBreakEven", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fixedCosts,
+          variableCostPerUnit,
+          sellingPricePerUnit,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            breakEvenUnits: data.breakEvenUnits,
+            breakEvenDollars: data.breakEvenDollars,
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     return (
       <div className="container">
         <h2>Break-Even Calculator</h2>
