@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from './BreakEven.module.css';
+import  './BreakEven.css';
 class BreakEvenCalculator extends Component {
   constructor() {
     super();
@@ -31,29 +31,29 @@ class BreakEvenCalculator extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: parseFloat(value) || 0 });
   };
-
+// vc: 10 sp: 20 fc: 100
   render() {
     const { fixedCosts, variableCostPerUnit, sellingPricePerUnit, breakEvenUnits, breakEvenDollars } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <h2>Break-Even Calculator</h2>
-        <label>
+        <label >
           Fixed Costs:
-          <input className={styles.container} type="number" name="fixedCosts" value={fixedCosts} onChange={this.handleChange} />
+          <input  type="number" name="fixedCosts" value={Number(fixedCosts).toString()} onChange={this.handleChange} />
         </label>
         <br />
         <label>
           Variable Cost Per Unit:
-          <input className="input" type="number" name="variableCostPerUnit" value={variableCostPerUnit} onChange={this.handleChange} />
+          <input className="input" type="number" name="variableCostPerUnit" value={Number(variableCostPerUnit).toString()} onChange={this.handleChange} />
         </label>
         <br />
         <label>
           Selling Price Per Unit:
-          <input  className="input" type="number" name="sellingPricePerUnit" value={sellingPricePerUnit} onChange={this.handleChange} />
+          <input   type="number" name="sellingPricePerUnit" value={Number(sellingPricePerUnit).toString()} onChange={this.handleChange} />
         </label>
         <br />
-        <button className="button" onClick={this.calculateBreakEven}>Calculate Break-Even</button>
+        <button  onClick={this.calculateBreakEven}>Calculate Break-Even</button>
         <div>
           <p>Break-Even Point (Units): {breakEvenUnits}</p>
           <p>Break-Even Point (Dollars): ${breakEvenDollars}</p>
